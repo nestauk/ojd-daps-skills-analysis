@@ -25,7 +25,7 @@ def load_model(app_mode):
     elif app_mode == lightcast_tax:
         es = ExtractSkills(config_name="extract_skills_lightcast", local=True)
 
-    PUBLIC_DATA_FOLDER_NAME = "ojd_daps_skills_data"
+    PUBLIC_DATA_FOLDER_NAME = "ojd_daps_skills_databb"
 
     PROJECT_DIR = sysconfig.get_paths()["purelib"]
     public_data_dir = os.path.join(PROJECT_DIR, PUBLIC_DATA_FOLDER_NAME)
