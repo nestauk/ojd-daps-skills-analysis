@@ -23,9 +23,8 @@ def load_model(app_mode):
         es = ExtractSkills(config_name="extract_skills_esco", local=True)
     elif app_mode == lightcast_tax:
         es = ExtractSkills(config_name="extract_skills_lightcast", local=True)
-    print(es.base_path)
-    print(es.ner_model_path)
-    es.load()
+
+    # es.load()
     return es
 
 image_dir = os.path.join(app_folder, "images/nesta_escoe_skills.png")
@@ -73,6 +72,9 @@ txt = st.text_area(
     "",
 )
 es = load_model(app_mode)
+
+st.markdown(f"base_path: {es.base_path}")
+st.markdown(f"ner_model_path: {es.ner_model_path}")
 
 button = st.button("Extract Skills")
 
