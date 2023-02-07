@@ -32,8 +32,8 @@ def load_model(app_mode):
     os.system(
         f"aws --no-sign-request --region=eu-west-1 s3 cp s3://open-jobs-indicators/escoe_extension/{PUBLIC_DATA_FOLDER_NAME}.zip {public_data_dir}.zip"
     )
-    # os.system(f"unzip {public_data_dir}.zip -d {PROJECT_DIR}")
-    # os.system(f"rm {public_data_dir}.zip")
+    os.system(f"unzip {public_data_dir}.zip -d {PROJECT_DIR}")
+    os.system(f"rm {public_data_dir}.zip")
     # es.load()
     return es
 
