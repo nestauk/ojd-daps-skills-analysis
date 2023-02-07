@@ -80,7 +80,9 @@ st.markdown(f"pwd: {os.getcwd()}")
 import sysconfig
 st.markdown(f'{sysconfig.get_paths()}')
 
-st.markdown(f'{os.listdir(sysconfig.get_paths()["stdlib"])}')
+for dir_name, dir_path in sysconfig.get_paths().items():
+    st.markdown(f'{dir_name}: ')
+    st.markdown(f'{os.listdir(dir_path)}')
 
 
 button = st.button("Extract Skills")
