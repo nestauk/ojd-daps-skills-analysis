@@ -75,6 +75,13 @@ es = load_model(app_mode)
 
 st.markdown(f"base_path: {es.base_path}")
 st.markdown(f"ner_model_path: {es.ner_model_path}")
+st.markdown(f"pwd: {os.getcwd()}")
+
+import sysconfig
+st.markdown(f'{sysconfig.get_paths()}')
+
+st.markdown(f'{os.listdir(sysconfig.get_paths()["stdlib"])}')
+
 
 button = st.button("Extract Skills")
 
