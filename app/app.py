@@ -25,9 +25,12 @@ def load_model(app_mode):
         es = ExtractSkills(config_name="extract_skills_lightcast", local=True)
 
     PUBLIC_DATA_FOLDER_NAME = "ojd_daps_skills_data"
+    public_data_dir = os.path.join(sysconfig.get_paths()["purelib"], PUBLIC_DATA_FOLDER_NAME)
     os.system(
-        f"aws --no-sign-request --region=eu-west-1 s3 cp s3://open-jobs-indicators/escoe_extension/{PUBLIC_DATA_FOLDER_NAME}.zip {PUBLIC_DATA_FOLDER_NAME}.zip"
+        f"aws --no-sign-request --region=eu-west-1 s3 cp s3://open-jobs-indicators/escoe_extension/{PUBLIC_DATA_FOLDER_NAME}.zip {public_data_dir}.zip"
     )
+    os.system(f"unzip {public_data_dir}.zip -d {PROJECT_DIR}")
+    os.system(f"rm {public_data_dir}.zip")
     # es.load()
     return es
 
@@ -87,6 +90,9 @@ st.markdown(f'{sysconfig.get_paths()}')
 for dir_name, dir_path in sysconfig.get_paths().items():
     st.markdown(f'{dir_name}: ')
     st.markdown(f'{os.listdir(dir_path)}')
+
+
+    
 
 button = st.button("Extract Skills")
 
