@@ -23,6 +23,8 @@ def load_model(app_mode):
         es = ExtractSkills(config_name="extract_skills_esco", local=True)
     elif app_mode == lightcast_tax:
         es = ExtractSkills(config_name="extract_skills_lightcast", local=True)
+    print(es.base_path)
+    print(es.ner_model_path)
     es.load()
     return es
 
