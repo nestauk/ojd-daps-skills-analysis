@@ -11,7 +11,6 @@ $ pip install -r requirements.txt
 Run the analysis blog:
 
 ```
-cd streamlit_viz
 streamlit run streamlit_viz/streamlit_viz.py
 
 ```
