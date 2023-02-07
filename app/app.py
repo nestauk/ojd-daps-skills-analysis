@@ -20,25 +20,15 @@ def hash_config_name(es):
 @st.cache(hash_funcs={ExtractSkills: hash_config_name})
 def load_model(app_mode):
     if app_mode == esco_tax:
-        es = ExtractSkills(config_name="extract_skills_esco", local=False)
+        es = ExtractSkills(config_name="extract_skills_esco", local=True)
     elif app_mode == lightcast_tax:
-        es = ExtractSkills(config_name="extract_skills_lightcast", local=False)
+        es = ExtractSkills(config_name="extract_skills_lightcast", local=True)
 
-    st.markdown(f"es.local: {es.local}")
-
-    st.markdown(f"base_path: {es.base_path}")
-    st.markdown(f"ner_model_path: {es.ner_model_path}")
-    st.markdown(f"pwd: {os.getcwd()}")
-
-    import sysconfig
-    st.markdown(f'{sysconfig.get_paths()}')
-
-    for dir_name, dir_path in sysconfig.get_paths().items():
-        st.markdown(f'{dir_name}: ')
-        st.markdown(f'{os.listdir(dir_path)}')
-
-
-    es.load()
+    PUBLIC_DATA_FOLDER_NAME = "ojd_daps_skills_data"
+    os.system(
+        f"aws --no-sign-request --region=eu-west-1 s3 cp s3://open-jobs-indicators/escoe_extension/{PUBLIC_DATA_FOLDER_NAME}.zip {PUBLIC_DATA_FOLDER_NAME}.zip"
+    )
+    # es.load()
     return es
 
 image_dir = os.path.join(app_folder, "images/nesta_escoe_skills.png")
@@ -86,6 +76,17 @@ txt = st.text_area(
     "",
 )
 es = load_model(app_mode)
+
+st.markdown(f"base_path: {es.base_path}")
+st.markdown(f"ner_model_path: {es.ner_model_path}")
+st.markdown(f"pwd: {os.getcwd()}")
+
+import sysconfig
+st.markdown(f'{sysconfig.get_paths()}')
+
+for dir_name, dir_path in sysconfig.get_paths().items():
+    st.markdown(f'{dir_name}: ')
+    st.markdown(f'{os.listdir(dir_path)}')
 
 button = st.button("Extract Skills")
 
