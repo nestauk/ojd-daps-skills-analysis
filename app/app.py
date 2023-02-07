@@ -27,7 +27,8 @@ def load_model(app_mode):
 
     PUBLIC_DATA_FOLDER_NAME = "ojd_daps_skills_data"
 
-    public_data_dir = os.path.join(sysconfig.get_paths()["purelib"], PUBLIC_DATA_FOLDER_NAME)
+    PROJECT_DIR = sysconfig.get_paths()["purelib"]
+    public_data_dir = os.path.join(PROJECT_DIR, PUBLIC_DATA_FOLDER_NAME)
     os.system(
         f"aws --no-sign-request --region=eu-west-1 s3 cp s3://open-jobs-indicators/escoe_extension/{PUBLIC_DATA_FOLDER_NAME}.zip {public_data_dir}.zip"
     )
@@ -84,9 +85,14 @@ es = load_model(app_mode)
 
 st.markdown(f"base_path: {es.base_path}")
 st.markdown(f"ner_model_path: {es.ner_model_path}")
+st.markdown(f"hier_name_mapper_file_name: {es.hier_name_mapper_file_name}")
+st.markdown(f"taxonomy_path: {es.taxonomy_path}")
+st.markdown(f"taxonomy_embedding_file_name: {es.taxonomy_embedding_file_name}")
+st.markdown(f"prev_skill_matches_file_name: {es.prev_skill_matches_file_name}")
+st.markdown(f"hard_labelled_skills_file_name: {es.hard_labelled_skills_file_name}")
+
 st.markdown(f"pwd: {os.getcwd()}")
 
-import sysconfig
 st.markdown(f'{sysconfig.get_paths()}')
 
 for dir_name, dir_path in sysconfig.get_paths().items():
