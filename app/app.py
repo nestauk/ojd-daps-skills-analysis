@@ -1,5 +1,6 @@
 import os
 from pathlib import Path
+import sysconfig
 
 import streamlit as st
 from annotated_text import annotated_text
@@ -25,6 +26,7 @@ def load_model(app_mode):
         es = ExtractSkills(config_name="extract_skills_lightcast", local=True)
 
     PUBLIC_DATA_FOLDER_NAME = "ojd_daps_skills_data"
+
     public_data_dir = os.path.join(sysconfig.get_paths()["purelib"], PUBLIC_DATA_FOLDER_NAME)
     os.system(
         f"aws --no-sign-request --region=eu-west-1 s3 cp s3://open-jobs-indicators/escoe_extension/{PUBLIC_DATA_FOLDER_NAME}.zip {public_data_dir}.zip"
@@ -92,7 +94,7 @@ for dir_name, dir_path in sysconfig.get_paths().items():
     st.markdown(f'{os.listdir(dir_path)}')
 
 
-    
+
 
 button = st.button("Extract Skills")
 
