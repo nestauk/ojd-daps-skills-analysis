@@ -24,6 +24,20 @@ def load_model(app_mode):
     elif app_mode == lightcast_tax:
         es = ExtractSkills(config_name="extract_skills_lightcast", local=False)
 
+    st.markdown(f"es.local: {es.local}")
+
+    st.markdown(f"base_path: {es.base_path}")
+    st.markdown(f"ner_model_path: {es.ner_model_path}")
+    st.markdown(f"pwd: {os.getcwd()}")
+
+    import sysconfig
+    st.markdown(f'{sysconfig.get_paths()}')
+
+    for dir_name, dir_path in sysconfig.get_paths().items():
+        st.markdown(f'{dir_name}: ')
+        st.markdown(f'{os.listdir(dir_path)}')
+
+
     es.load()
     return es
 
@@ -72,18 +86,6 @@ txt = st.text_area(
     "",
 )
 es = load_model(app_mode)
-
-st.markdown(f"base_path: {es.base_path}")
-st.markdown(f"ner_model_path: {es.ner_model_path}")
-st.markdown(f"pwd: {os.getcwd()}")
-
-import sysconfig
-st.markdown(f'{sysconfig.get_paths()}')
-
-for dir_name, dir_path in sysconfig.get_paths().items():
-    st.markdown(f'{dir_name}: ')
-    st.markdown(f'{os.listdir(dir_path)}')
-
 
 button = st.button("Extract Skills")
 
