@@ -6,7 +6,7 @@
 
 This repo contains the source code that powers our two streamlit apps: 
 
-1. [An front end app](https://github.com/nestauk/ojd-daps-skills-analysis/tree/dev/app) to demo Nesta's open-source [Skills Extractor Library](https://nestauk.github.io/ojd_daps_skills/build/html/about.html)
+1. [An app](https://github.com/nestauk/ojd-daps-skills-analysis/tree/dev/app) to demo Nesta's open-source [Skills Extractor Library](https://nestauk.github.io/ojd_daps_skills/build/html/about.html)
 
 <p align="center">
   <img src="https://user-images.githubusercontent.com/46863334/217520975-579ebd44-e9c4-48be-ad83-96bacc16a412.gif" />
