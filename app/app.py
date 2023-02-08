@@ -1,6 +1,7 @@
 import os
 from pathlib import Path
 import sysconfig
+from pyunpack import Archive
 
 import streamlit as st
 from annotated_text import annotated_text
@@ -18,7 +19,7 @@ def hash_config_name(es):
     # custom hash function in order to use st.cache
     return es.taxonomy_name
     
-@st.cache(hash_funcs={ExtractSkills: hash_config_name})
+# @st.cache(hash_funcs={ExtractSkills: hash_config_name})
 def load_model(app_mode):
     if app_mode == esco_tax:
         es = ExtractSkills(config_name="extract_skills_esco", local=True)
@@ -32,6 +33,11 @@ def load_model(app_mode):
     os.system(
         f"aws --no-sign-request --region=eu-west-1 s3 cp s3://open-jobs-indicators/escoe_extension/{PUBLIC_DATA_FOLDER_NAME}.zip {public_data_dir}.zip"
     )
+    st.markdown("downloaded")
+
+    Archive(f'{public_data_dir}.zip').extractall('.')
+    # open('hello.txt').read()
+
     os.system(f"unzip {public_data_dir}.zip -d {PROJECT_DIR}")
     os.system(f"rm {public_data_dir}.zip")
     # es.load()

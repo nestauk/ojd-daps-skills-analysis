@@ -11,3 +11,4 @@ ojd-daps-skills
 awscli==1.27.25
 st-annotated-text==3.0.0
 https://github.com/explosion/spacy-models/releases/download/en_core_web_sm-3.4.1/en_core_web_sm-3.4.1.tar.gz
+pyunpack
