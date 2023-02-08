@@ -14,3 +14,10 @@ Run the analysis blog:
 streamlit run streamlit_viz/streamlit_viz.py
 
 ```
+
+Run the demo app:
+
+```
+streamlit run app/app/py
+
+```
