@@ -10,13 +10,14 @@ from colour import Color
 
 from streamlit_viz_utils import *
 
-
 PROJECT_DIR = Path(__file__).resolve().parents[1]
 data_folder = os.path.join(PROJECT_DIR, "streamlit_viz/data")
 images_folder = os.path.join(PROJECT_DIR, "streamlit_viz/images")
 
+st.set_page_config(
+    page_title="Skills Demand Analysis", page_icon=os.path.join(images_folder, "nesta_logo.png"),
+)
 
-print(PROJECT_DIR)
 def load_summary_data():
 
     file_name = os.path.join(
@@ -812,10 +813,10 @@ with st.expander("A use case for HR: _Understanding skills in a job advert_"):
     with col3:
         st.write("")
 
-    tax_text = """ For example, the text above is from a job advert for a Commercial Finance Manager. When the user clicks ‘Extract Skills’, the algorithm outputs two types of skills:
+    tax_text = """ For example, the text above is from a job advert for a Software Engineer. When the user clicks ‘Extract Skills’, the algorithm outputs two types of skills:
     the first are the raw skill spans as exactly worded from the job advert. The second are taxonomy skills based on how closely the raw skill spans map to them.
 
-    As the algorithm supports multiple taxonomies, a user can compare the nature and types of skills present in the different taxonomies. For example, when the algorithm is applied to a software engineer role, the lightcast taxonomy skills are more specific to programming languages than ESCO. This suggests that there could be more technical skills included in the lightcast taxonomy.
+    As the algorithm supports multiple taxonomies, a user can compare the nature and types of skills present in the different taxonomies. For example, when the algorithm is applied to the software engineer role, the lightcast taxonomy skills are more specific to programming languages than ESCO. This suggests that there could be more technical skills included in the lightcast taxonomy.
 
     """
     st.markdown(tax_text)
