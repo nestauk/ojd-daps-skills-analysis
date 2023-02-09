@@ -605,7 +605,12 @@ with st.expander("A use case for career advisers: _Enriching career advice_"):
         unsafe_allow_html=True,
     )
 
-    occ_text = """For a selected occupation, the visualisations below show the most commonly requested skills (and skill groups) for that role. It also shows the ten occupations that require the most similar skills to that role, based on our sample of job advertisements. Please note that some occupations are not similar to any other occupation based on skills, such as roles related to ‘payroll’. Only occupations with over 500 job adverts have been included in our visualisation. Occupation names were not cleaned for coherence. This type of information could be used to enrich careers advice by providing new insights on the skills required for a given occupation. It could also be used to broaden the search horizons of job seekers, by providing them with a list of occupations that require similar skills, but which the job seeker may have previously not considered. 
+    occ_text = """
+    For a selected occupation, the visualisations below show the most commonly requested skills (and skill groups) for that role. It also shows the ten occupations that require the most similar skills to that role, based on our sample of job advertisements. Please note that some occupations are not similar to other occupations based on skills. 
+    
+    Only occupations with over 500 job adverts have been included in our visualisation. Occupation names were not cleaned for coherence. 
+    
+    This type of information could be used to enrich careers advice by providing new insights on the skills required for a given occupation. It could also be used to broaden the search horizons of job seekers, by providing them with a list of occupations that require similar skills, but which the job seeker may have previously not considered. 
     
     """
 
@@ -679,7 +684,12 @@ with st.expander("A use case for career advisers: _Enriching career advice_"):
         unsafe_allow_html=True,
     )
 
-    occ_map_text = """The visualisation above shows the most similar roles for a single occupation based on skills. Meanwhile, the map below shows the similarity between all occupations, based on the skills mentioned within all 100,000 adverts. Each occupation is represented by a circle (or ‘node’). The size of the node reflects the number of adverts in our sample for that occupation. A line between two nodes indicates that the two occupations share similar skills. The map shows both expected and unexpected skill relationships between occupations. For example, and unsurprisingly, the skills demanded for different teaching occupations such as ‘Adult Educator’ and ‘Teaching Assistant’ are similar. However, and somewhat unexpectedly, some of the skills required by solicitors/lawyers are not only similar to those required by other legal roles, but also by engineering occupations. This could be due to the analytical nature of both roles. This type of map could be used when career advisers are recommending that a worker retrains or changes their occupation. This use case could come about because the worker’s job is at risk of automation, or because they wish to transition into a green job. In both cases, this map could be used to point out occupations that require similar skills to their present role. Of course, skill overlap is just one aspect to consider when recommending a career move, but it is still an essential consideration. 
+    occ_map_text = """
+    The visualisation above shows the most similar roles for a single occupation based on skills. Meanwhile, the map below shows the similarity between all occupations, based on the skills mentioned within all 100,000 adverts. Each occupation is represented by a circle (or ‘node’). The size of the node reflects the number of adverts in our sample for that occupation. A line between two nodes indicates that the two occupations share similar skills. 
+    
+    The map shows both expected and unexpected skill relationships between occupations. For example, and unsurprisingly, the skills demanded for different teaching occupations such as ‘Adult Educator’ and ‘Teaching Assistant’ are similar. However, and somewhat unexpectedly, some of the skills required by solicitors/lawyers are not only similar to those required by other legal roles, but also by engineering occupations. This could be due to the analytical nature of both roles. 
+    
+    This type of map could be used when career advisers are recommending that a worker retrains or changes their occupation. This use case could come about because the worker’s job is at risk of automation, or because they wish to transition into a green job. In both cases, this map could be used to point out occupations that require similar skills to their present role. Of course, skill overlap is just one aspect to consider when recommending a career move, but it is still an essential consideration. 
     """
 
     st.markdown(occ_map_text)
@@ -717,7 +727,10 @@ regions_list = list(all_region_data.keys())
 st.header("", anchor="regions")
 with st.expander("A use case for local authorities: _Regional skill demand_"):
 
-    local_gov_text = """In addition to providing insights at a national level, job adverts can also give a sense of the skills landscape at a regional level. Regions with fewer than 500 job adverts were removed. The visualisation below shows the breakdown of job adverts across regions. For example, the tool shows that a large proportion of adverts can be found in London, Surrey and Berkshire, Buckinghamshire and Oxfordshire. 
+    local_gov_text = """
+    In addition to providing insights at a national level, job adverts can also give a sense of the skills landscape at a regional level. Regions with fewer than 500 job adverts were removed. 
+    
+    The visualisation below shows the breakdown of job adverts across regions. For example, the tool shows that a large proportion of adverts can be found in London, Surrey and Berkshire, Buckinghamshire and Oxfordshire. 
 
     """
 
@@ -776,7 +789,12 @@ with st.expander("A use case for local authorities: _Regional skill demand_"):
         "<p class='medium-font'>Regional Skill Intensity</p>", unsafe_allow_html=True
     )
 
-    loc_text_intensity = """The visualisation above shows that the most commonly requested skills in job adverts are fairly similar across regions. In order to get a better sense of a region’s ‘skill specialities’, we compute a metric called ‘location quotient', which identifies those skill groups that are requested relatively more or less frequently in that region than across the rest of the country. The quotient is calculated by dividing the percentage of job vacancies that mention at least one skill from that skill group in that region, by the same percentage for the whole of the UK. Scores above one indicate that the region may have relatively greater demand for that skill group, while scores below one suggest the opposite. Skills mentioned at least once in fewer than 100 job adverts were removed. For example, London has a relative skill specialism in _software and applications development and analysis_ and _finance, banking and insurance_. This information might be useful for local authorities who are seeking to understand the skills that are in relatively greater demand within their region, to in turn inform decisions around local skills provision.      
+    loc_text_intensity = """
+    The visualisation above shows that the most commonly requested skills in job adverts are fairly similar across regions. In order to get a better sense of a region’s ‘skill specialities’, we compute a metric called ‘location quotient', which identifies those skill groups that are requested relatively more or less frequently in that region than across the rest of the country. The quotient is calculated by dividing the percentage of job vacancies that mention at least one skill from that skill group in that region, by the same percentage for the whole of the UK. Scores above one indicate that the region may have relatively greater demand for that skill group, while scores below one suggest the opposite. Skills mentioned at least once in fewer than 100 job adverts were removed. 
+    
+    For example, London has a relative skill specialism in _software and applications development and analysis_ and _finance, banking and insurance_. Meanwhile, Scotland has a relative specialisation in skills related to _providing medical, dental and nursing care_ and _demonstrate consideration_. 
+    
+    This information might be useful for local authorities who are seeking to understand the skills that are in relatively greater demand within their region, to in turn inform decisions around local skills provision.      
     """
 
     st.markdown(loc_text_intensity)
@@ -821,7 +839,10 @@ with st.expander("A use case for HR: _Understanding skills in a job advert_"):
     with col3:
         st.write("")
 
-    tax_text = """The text entered above was taken from a job advert for a Software Engineer. When the user clicks ‘Extract Skills’, the algorithm outputs two lists of skills: the first list shows the ‘raw skills’ as they are expressed within the job advert. The second list consists of the skills from the ESCO taxonomy that the raw skills have been mapped onto. As the algorithm supports multiple taxonomies, a user can compare the nature and types of skills extracted by different taxonomies. For example, when the algorithm is applied to a Software Engineering role, the skills mapped to the Lightcast taxonomy are more specific to programming languages than those skills mapped to the ESCO taxonomy. This suggests that the Lightcast taxonomy may contain more technical skills.     
+    tax_text = """
+    The text entered above was taken from a job advert for a Software Engineer. When the user clicks ‘Extract Skills’, the algorithm outputs two lists of skills: the first list shows the ‘raw skills’ as they are expressed within the job advert. The second list consists of the skills from the ESCO taxonomy that the raw skills have been mapped onto. 
+    
+    As the algorithm supports multiple taxonomies, a user can compare the nature and types of skills extracted by different taxonomies. For example, the skills mapped to the Lightcast taxonomy for a software engineering role appear more specific to programming languages than those skills mapped to the ESCO taxonomy. This suggests that the Lightcast taxonomy may contain more technical skills.     
 
     """
     st.markdown(tax_text)
