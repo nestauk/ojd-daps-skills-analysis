@@ -1,6 +1,6 @@
 # :honeybee: Skills Extractor Analysis
 
-**_Open-source code for analysis built on top of Nesta's open-source [Skills Extractor Library](https://nestauk.github.io/ojd_daps_skills/build/html/about.html) and the [Open Jobs Observatory](https://github.com/nestauk/ojo_daps_mirror)_**
+**_Analysis code built on top of Nesta's open-source [Skills Extractor Library](https://nestauk.github.io/ojd_daps_skills/build/html/about.html) and the [Open Jobs Observatory](https://github.com/nestauk/ojo_daps_mirror)_**
 
 ## :wave: Welcome!
 
