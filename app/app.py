@@ -1,7 +1,5 @@
 import os
 from pathlib import Path
-import sysconfig
-from pyunpack import Archive
 
 import streamlit as st
 from annotated_text import annotated_text
@@ -19,28 +17,13 @@ def hash_config_name(es):
     # custom hash function in order to use st.cache
     return es.taxonomy_name
     
-# @st.cache(hash_funcs={ExtractSkills: hash_config_name})
+@st.cache(hash_funcs={ExtractSkills: hash_config_name})
 def load_model(app_mode):
     if app_mode == esco_tax:
         es = ExtractSkills(config_name="extract_skills_esco", local=True)
     elif app_mode == lightcast_tax:
         es = ExtractSkills(config_name="extract_skills_lightcast", local=True)
-
-    PUBLIC_DATA_FOLDER_NAME = "ojd_daps_skills_data"
-
-    PROJECT_DIR = sysconfig.get_paths()["purelib"]
-    public_data_dir = os.path.join(PROJECT_DIR, PUBLIC_DATA_FOLDER_NAME)
-    os.system(
-        f"aws --no-sign-request --region=eu-west-1 s3 cp s3://open-jobs-indicators/escoe_extension/{PUBLIC_DATA_FOLDER_NAME}.zip {public_data_dir}.zip"
-    )
-    st.markdown("downloaded")
-
-    Archive(f'{public_data_dir}.zip').extractall('.')
-    # open('hello.txt').read()
-
-    os.system(f"unzip {public_data_dir}.zip -d {PROJECT_DIR}")
-    os.system(f"rm {public_data_dir}.zip")
-    # es.load()
+    es.load()
     return es
 
 image_dir = os.path.join(app_folder, "images/nesta_escoe_skills.png")
@@ -55,9 +38,7 @@ with open(os.path.join(app_folder, "style.css")) as css:
 st.markdown(
     """
 This app shows how Nesta's [Skills Extractor Library](https://github.com/nestauk/ojd_daps_skills) can extract skills from a job advert and then match those terms to skills from a standard list or ‘skills taxonomy’.
-
 At present, you can choose to match extracted skills to one of two skills taxonomies that have been developed by other groups:
-
 1. The [European Commission's ESCO taxonomy v1.1.1](https://esco.ec.europa.eu/en/classification/skill_main) which is a multilingual classification of European Skills, Competences, Qualifications and Occupations and;
 2. [Lightcast's Open Skills taxonomy](https://lightcast.io/open-skills) (as of 22/11/22) which is an open source library of 32,000+ skills.
 """
@@ -71,11 +52,8 @@ st.warning(
 st.markdown(
     """
 If you would like to extract skills from many adverts, you can use our [open-source python library](https://github.com/nestauk/ojd_daps_skills) by simply `pip install ojd-daps-skills` and following the [instructions in our documentation](https://nestauk.github.io/ojd_daps_skills/build/html/about.html).
-
 If you would like to explore how the algorithm can provide new insights, check out this interactive blog (link pending) that analyses extracted skills from thousands of job adverts.
-
 The Skills Extractor library was made possible by funding from the [Economic Statistics Centre of Excellence](https://www.escoe.ac.uk/).
-
 If you have any feedback or questions about the library or app, do reach out to dataanalytics@nesta.org.uk.
 """
 )
@@ -88,25 +66,6 @@ txt = st.text_area(
     "",
 )
 es = load_model(app_mode)
-
-st.markdown(f"base_path: {es.base_path}")
-st.markdown(f"ner_model_path: {es.ner_model_path}")
-st.markdown(f"hier_name_mapper_file_name: {es.hier_name_mapper_file_name}")
-st.markdown(f"taxonomy_path: {es.taxonomy_path}")
-st.markdown(f"taxonomy_embedding_file_name: {es.taxonomy_embedding_file_name}")
-st.markdown(f"prev_skill_matches_file_name: {es.prev_skill_matches_file_name}")
-st.markdown(f"hard_labelled_skills_file_name: {es.hard_labelled_skills_file_name}")
-
-st.markdown(f"pwd: {os.getcwd()}")
-
-st.markdown(f'{sysconfig.get_paths()}')
-
-for dir_name, dir_path in sysconfig.get_paths().items():
-    st.markdown(f'{dir_name}: ')
-    st.markdown(f'{os.listdir(dir_path)}')
-
-
-
 
 button = st.button("Extract Skills")
 
