@@ -608,7 +608,7 @@ with st.expander("A use case for career advisers: _Enriching career advice_"):
     occ_text = """
     For a selected occupation, the visualisations below show the most commonly requested skills (and skill groups) for that role. It also shows the ten occupations that require the most similar skills to that role, based on our sample of job advertisements. Please note that some occupations are not similar to other occupations based on skills. 
     
-    Only occupations with over 500 job adverts have been included in our visualisation. Occupation names were not cleaned for coherence. 
+    Only occupations with over 200 job adverts have been included in our visualisation. Occupation names were not cleaned for coherence. 
     
     This type of information could be used to enrich careers advice by providing new insights on the skills required for a given occupation. It could also be used to broaden the search horizons of job seekers, by providing them with a list of occupations that require similar skills, but which the job seeker may have previously not considered. 
     
@@ -616,7 +616,7 @@ with st.expander("A use case for career advisers: _Enriching career advice_"):
 
     st.markdown(occ_text)
 
-    top_sectors = [k for k, v in all_sector_data.items() if v["num_ads"] > 500]
+    top_sectors = [k for k, v in all_sector_data.items() if v["num_ads"] > 200]
 
     sector = st.selectbox("Select an occupation", top_sectors)
 
