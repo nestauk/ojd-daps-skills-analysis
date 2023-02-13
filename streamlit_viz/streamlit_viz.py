@@ -536,7 +536,7 @@ st.markdown(
     "<p class='subtitle-font'>India Kerle, Liz Gallagher and Cath Sleeman</p>",
     unsafe_allow_html=True,
 )
-st.markdown("<p class='subtitle-font'>6th Februrary 2023</p>", unsafe_allow_html=True)
+st.markdown("<p class='subtitle-font'>13th February 2023</p>", unsafe_allow_html=True)
 
 
 # ----- Introduction -----
