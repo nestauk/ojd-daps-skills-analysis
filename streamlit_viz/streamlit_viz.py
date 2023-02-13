@@ -10,13 +10,14 @@ from colour import Color
 
 from streamlit_viz_utils import *
 
-
 PROJECT_DIR = Path(__file__).resolve().parents[1]
 data_folder = os.path.join(PROJECT_DIR, "streamlit_viz/data")
 images_folder = os.path.join(PROJECT_DIR, "streamlit_viz/images")
 
+st.set_page_config(
+    page_title="Skills Demand Analysis", page_icon=os.path.join(images_folder, "nesta_logo.png"),
+)
 
-print(PROJECT_DIR)
 def load_summary_data():
 
     file_name = os.path.join(
@@ -377,7 +378,7 @@ def create_common_skills_chart_by_skill_groups(top_skills_by_skill_groups, skill
 
 
 def create_common_skills_chart(
-    all_sector_data, skill_group_level, sector, remove_trans=False
+    all_sector_data, skill_group_level, sector, trans_option
 ):
 
     skill_group_select_text = {
@@ -389,8 +390,11 @@ def create_common_skills_chart(
         "4": "skill",
     }
 
-    if remove_trans:
+    if trans_option == 'no transversal skills':
         key_name = "top_skills_no_transversal"
+
+    if trans_option == 'only transversal skills':
+        key_name = "top_transversal_skills"
     else:
         key_name = "top_skills"
 
@@ -532,7 +536,7 @@ st.markdown(
     "<p class='subtitle-font'>India Kerle, Liz Gallagher and Cath Sleeman</p>",
     unsafe_allow_html=True,
 )
-st.markdown("<p class='subtitle-font'>6th Februrary 2023</p>", unsafe_allow_html=True)
+st.markdown("<p class='subtitle-font'>13th February 2023</p>", unsafe_allow_html=True)
 
 
 # ----- Introduction -----
@@ -540,19 +544,20 @@ st.markdown("<p class='subtitle-font'>6th Februrary 2023</p>", unsafe_allow_html
 st.header("", anchor="introduction")
 # with st.expander("Introduction", expanded=True):
 intro_text = """
-Many stakeholders like policy makers, local authorities and career advisers don’t have access to information on the skill demand landscape because there is no publicly available data on the skills requested in UK job adverts. This data gap means that stakeholders have a less complete evidence base to inform labour market policy efforts, address regional skill shortages or suggest occupation transitions.
+Many groups, including policy makers, local authorities and career advisers, don’t have access to up-to-date information on the latest skills required by employers. This is because there is no publicly available data on the skills mentioned within UK job advertisements. This data gap means that these groups have a less-than-complete evidence base on which to inform labour market policies, address regional skill shortages or advise job seekers. 
 
 To address this, Nesta has released the [Open Jobs Observatory (OJO)](https://www.nesta.org.uk/data-visualisation-and-interactive/open-jobs-observatory/), a project to:
 
-1. *collect* millions of online job adverts and;
-2. *develop* a suite of algorithms to extract insights from the text.
+1. *Collect* millions of online job adverts (with the permission of online job boards); and
+2. *Develop* a suite of algorithms that extract insights from the text of the job advertisements. 
 
-We have recently released an [open-source skills extraction python library](https://nestauk.github.io/ojd_daps_skills/build/html/about.html) - to learn more about it, you can read our previous blog (link pending).
+We have recently released an [open-source skills extraction python library](https://nestauk.github.io/ojd_daps_skills/build/html/about.html) which extracts the skills mentioned within job adverts. To learn more about this, you can read our previous blog (link pending).
 
-Both our suite of algorithms and ever growing database of online job adverts allow us to drill down on occupational and regional skill demand. To illustrate the types of analysis made possible by addressing this data gap, we have created a number of example interactive visualisations. All the examples are based on a static sample of 100,000 job adverts that were posted online between January 2021 and August 2022. All the skills extracted were matched to the **[European Commission’s European Skills, Competences, and Occupations (ESCO)](https://esco.ec.europa.eu/en/about-esco/what-esco) skills taxonomy**.
+Both our suite of algorithms and ever growing database of online job adverts allow us to drill down on occupational and regional skill demand. To illustrate the types of analysis made possible by addressing this data gap, we have created a number of example interactive visualisations. All the examples, shown below, are based on **a static sample of 100,000 job adverts that were posted online between January 2021 and August 2022**. The skills extracted were matched to the [European Commission’s European Skills, Competences, and Occupations (ESCO)](https://esco.ec.europa.eu/en/about-esco/what-esco) skills taxonomy.
 
-This blog is intended as a demonstration only, to showcase what is possible with rich data and extracted insights. In the future, we hope to be able to build a real-time tool that relies on the whole database to more completely capture the UK’s skills demand landscape.
+It is important to note that, whilst job advertisements can provide interesting insights, they are not without limitation. For example, we know that not all vacant positions are advertised online, and moreover, not all skills required in a job may be mentioned within the advert. Therefore, our overall results will be affected by the tendency to advertise certain types of jobs online, across both regions and occupations.
 
+This blog is intended as a demonstration only, to showcase what is possible with rich data and open algorithms. In the future, we hope to build a real-time tool that uses the entire database of job adverts to more completely describe the UK’s skill demands landscape.  
 """
 
 st.markdown(intro_text)
@@ -562,10 +567,9 @@ st.markdown(intro_text)
 st.header("", anchor="common_skills")
 # with st.expander("Most Common Skills"):
 
-sum_text = """ We are able to get a sense of the most common skills across regions and occupations. At the highest level, the most commonly occurring ESCO skill in the sample of job adverts is "communication" which is mentioned in *20%* of job adverts.  "Show positive attitude" features in *14%* of adverts and "show organisational abilities" appears in *10%*.
+sum_text = """This first section shows how the adverts can provide a sense of the skills that are most commonly requested within job advertisements. Amongst the most granular set of ESCO skills, the most commonly occurring ESCO skill in the sample of job adverts is "communication", which is mentioned in 20% of job adverts.  "Show positive attitude" features in 14% of adverts and "show organisational abilities" appears in 10%. 
 
-To get a more granular sense of the most common i.e. information or transversal skills, you can use the interactive visualisation below to interrogate the most commonly occuring skills in the skills taxonomy.
-
+You can use the interactive visualisation below to get a more granular sense of the most common skills within different skill groups, including transversal or ‘core’ skills.  
 """
 
 st.markdown(sum_text)
@@ -601,15 +605,18 @@ with st.expander("A use case for career advisers: _Enriching career advice_"):
         unsafe_allow_html=True,
     )
 
-    occ_text = """ For a selected occupation, the visualisations below show the most commonly requested skills (and skill groups) for that role as well as the ten occupations that require the most similar skills.
-
-    Only occupations with over 500 job adverts have been included. This type of information could be used to enrich careers advice by providing new insights on the skills required for an occupation. It could also be used to broaden the search horizons of job seekers by providing names of occupations that require similar skills which they may have previously not considered.
-
+    occ_text = """
+    For a selected occupation, the visualisations below show the most commonly requested skills (and skill groups) for that role. It also shows the ten occupations that require the most similar skills to that role, based on our sample of job advertisements. Please note that some occupations are not similar to other occupations based on skills. 
+    
+    Only occupations with over 200 job adverts have been included in our visualisation. Occupation names were not cleaned for coherence. 
+    
+    This type of information could be used to enrich careers advice by providing new insights on the skills required for a given occupation. It could also be used to broaden the search horizons of job seekers, by providing them with a list of occupations that require similar skills, but which the job seeker may have previously not considered. 
+    
     """
 
     st.markdown(occ_text)
 
-    top_sectors = [k for k, v in all_sector_data.items() if v["num_ads"] > 500]
+    top_sectors = [k for k, v in all_sector_data.items() if v["num_ads"] > 200]
 
     sector = st.selectbox("Select an occupation", top_sectors)
 
@@ -642,15 +649,27 @@ with st.expander("A use case for career advisers: _Enriching career advice_"):
         "Skill": "4",
     }
 
-    skill_group_level = st.selectbox(
-        "Select skill group level", list(selection_mapper.keys())
-    )
-    remove_trans = st.checkbox("Remove transversal skills", key="1")
+    only_trans_mapper = {
+        "Any (closest skill or skill group)": "all",
+        'Mid/granular (e.g. "S1.2")': "2",
+        "Skill": "4",
+    }
+
+    trans_option = st.radio("Transversal skills options :point_down:", ['all skills', 'only transversal skills', 'no transversal skills'], horizontal=True, key="1")
+    
+    if trans_option == 'only transversal skills':
+        skill_group_level = st.selectbox(
+            "Select transversal skill group level", list(only_trans_mapper.keys()), key="57"
+        )
+    else:
+        skill_group_level = st.selectbox(
+            "Select skill group level", list(selection_mapper.keys()), key="2"
+        )
 
     skill_group_level = selection_mapper[skill_group_level]
 
     common_skills_chart = create_common_skills_chart(
-        all_sector_data, skill_group_level, sector, remove_trans=remove_trans
+        all_sector_data, skill_group_level, sector, trans_option=trans_option
     )
 
     st.altair_chart(
@@ -661,16 +680,16 @@ with st.expander("A use case for career advisers: _Enriching career advice_"):
     ## ----- Skill similarities network [selections: none] -----
 
     st.markdown(
-        "<p class='medium-font'>Providing a map of all occupations</p>",
+        "<p class='medium-font'>A map of all occupations</p>",
         unsafe_allow_html=True,
     )
 
-    occ_map_text = """ We have developed a map of occupations where connections between them are made when they demand similar skills.
-
-    The map shows both expected and unexpected skill relationships between occupations. For example, and unsurprisingly, the skills demanded for different teaching occupations such as ‘Adult Educator’ and ‘Teaching Assistant’ are similar. However, and somewhat unexpectedly, skills required of solicitors/lawyers are similar to both other legal and engineering occupations. This could be due to the analytical nature of both roles.
-
-    This map could be used to help guide transitions from one occupation to another. For example, it could help job seekers leave occupations at risk of automation or encourage them into green occupations. Although skill overlap is only one aspect of recommending occupation transitions, it is still an essential consideration.
-
+    occ_map_text = """
+    The visualisation above shows the most similar roles for a single occupation based on skills. Meanwhile, the map below shows the similarity between all occupations, based on the skills mentioned within all 100,000 adverts. Each occupation is represented by a circle (or ‘node’). The size of the node reflects the number of adverts in our sample for that occupation. A line between two nodes indicates that the two occupations share similar skills. 
+    
+    The map shows both expected and unexpected skill relationships between occupations. For example, and unsurprisingly, the skills demanded for different teaching occupations such as ‘Adult Educator’ and ‘Teaching Assistant’ are similar. However, and somewhat unexpectedly, some of the skills required by solicitors/lawyers are not only similar to those required by other legal roles, but also by engineering occupations. This could be due to the analytical nature of both roles. 
+    
+    This type of map could be used when career advisers are recommending that a worker retrains or changes their occupation. This use case could come about because the worker’s job is at risk of automation, or because they wish to transition into a green job. In both cases, this map could be used to point out occupations that require similar skills to their present role. Of course, skill overlap is just one aspect to consider when recommending a career move, but it is still an essential consideration. 
     """
 
     st.markdown(occ_map_text)
@@ -708,9 +727,10 @@ regions_list = list(all_region_data.keys())
 st.header("", anchor="regions")
 with st.expander("A use case for local authorities: _Regional skill demand_"):
 
-    local_gov_text = """ In addition to providing insights at a national level, job adverts can also give a sense of the skills landscape at a regional level.
-
-    The visualisation below shows the breakdown of vacancies across regions. For example, the tool shows that a large proportion of vacancies can be found in London, Surrey and Berkshire, Buckinghamshire and Oxfordshire.
+    local_gov_text = """
+    In addition to providing insights at a national level, job adverts can also give a sense of the skills landscape at a regional level. Regions with fewer than 500 job adverts were removed. 
+    
+    The visualisation below shows the breakdown of job adverts across regions. For example, the tool shows that a large proportion of adverts can be found in London, Surrey and Berkshire, Buckinghamshire and Oxfordshire. 
 
     """
 
@@ -735,22 +755,27 @@ with st.expander("A use case for local authorities: _Regional skill demand_"):
 
     st.markdown("<p class='medium-font'>Skills per Region</p>", unsafe_allow_html=True)
 
-    local_gov_text_top_skills = """The visualisation below shows the most common skills (and skill groups) requested in job adverts for a chosen region. By taking advantage of the ESCO multi-level structure, we can provide a sense of both the broad and narrow skill mixes within the chosen region.
+    local_gov_text_top_skills = """The visualisation below shows the most common skills (and skill groups) requested in job adverts for a chosen region. By taking advantage of the multi-level structure of ESCO, we can provide a sense of both the broad and narrow skill mixes within the chosen region. 
 
     """
 
     st.markdown(local_gov_text_top_skills)
 
-    skill_group_level = st.selectbox(
-        "Select skill or skill group level", list(selection_mapper.keys())
-    )
-
-    remove_trans = st.checkbox("Remove transversal skills", key="2")
+    trans_option = st.radio("Transversal skills options :point_down:", ['all skills', 'only transversal skills', 'no transversal skills'], horizontal=True, key="3")
+    
+    if trans_option == 'only transversal skills':
+        skill_group_level = st.selectbox(
+            "Select transversal skill group level", list(only_trans_mapper.keys()), key='596'
+        )
+    else:
+        skill_group_level = st.selectbox(
+            "Select skill group level", list(selection_mapper.keys()), key='4'
+        )
 
     skill_group_level = selection_mapper[skill_group_level]
 
     common_skills_chart = create_common_skills_chart(
-        all_region_data, skill_group_level, geo, remove_trans=remove_trans
+        all_region_data, skill_group_level, geo, trans_option=trans_option
     )
 
     st.altair_chart(
@@ -764,10 +789,12 @@ with st.expander("A use case for local authorities: _Regional skill demand_"):
         "<p class='medium-font'>Regional Skill Intensity</p>", unsafe_allow_html=True
     )
 
-    loc_text_intensity = """ Finally, we can find out about a region’s skill ‘intensity’ by identifying those skill groups that are requested relatively more or less frequently in a region than across the rest of the country. This metric is called a location quotient and is calculated by dividing the % of job vacancies requiring a skill group in that region by the same percentage for the whole of the UK. Scores above 1 indicate that the region may have relatively greater demand for that skill group while scores below 1 suggest the opposite.
-
-    This information might be useful for local authorities who are seeking to understand the skills that are in relatively greater demand within their region, to in turn inform decisions around local skills provision. Alternatively, local authorities could use information on regionally underrepresented skill groups to inform decisions on skill training programmes.
-
+    loc_text_intensity = """
+    The visualisation above shows that the most commonly requested skills in job adverts are fairly similar across regions. In order to get a better sense of a region’s ‘skill specialities’, we compute a metric called ‘location quotient', which identifies those skill groups that are requested relatively more or less frequently in that region than across the rest of the country. The quotient is calculated by dividing the percentage of job vacancies that mention at least one skill from that skill group in that region, by the same percentage for the whole of the UK. Scores above one indicate that the region may have relatively greater demand for that skill group, while scores below one suggest the opposite. Skills mentioned at least once in fewer than 100 job adverts were removed. 
+    
+    For example, London has a relative skill specialism in _software and applications development and analysis_ and _finance, banking and insurance_. Meanwhile, Scotland has a relative specialisation in skills related to _providing medical, dental and nursing care_ and _demonstrate consideration_. 
+    
+    This information might be useful for local authorities who are seeking to understand the skills that are in relatively greater demand within their region, to in turn inform decisions around local skills provision.      
     """
 
     st.markdown(loc_text_intensity)
@@ -785,9 +812,9 @@ st.header("", anchor="hr")
 with st.expander("A use case for HR: _Understanding skills in a job advert_"):
 
     hr_text = """
-        We have also developed a beta app that uses our algorithm to extract skills from a single job advert supplied by a user. This could be useful for HR professionals to quickly identify the skills that they are requesting within an otherwise densely worded job advert.
+        We have also developed a beta app (link pending) that uses our algorithm to extract skills from a single job advert supplied by a user. This could be useful for HR professionals to quickly identify the skills that they are requesting within an otherwise densely worded job advert. 
 
-        The user simply pastes their advert into the empty box, shown below. The algorithm then extracts the skill-related terms within the text and seeks to find their closest matches within an official list (or taxonomy) or skills.
+        The user simply pastes their advert into the empty box, shown below. The algorithm then extracts the skill-related terms within the text and seeks to find their closest matches within an official list (or taxonomy) of skills. 
 
         The user can choose from one of two skill taxonomies:
 
@@ -812,10 +839,10 @@ with st.expander("A use case for HR: _Understanding skills in a job advert_"):
     with col3:
         st.write("")
 
-    tax_text = """ For example, the text above is from a job advert for a Commercial Finance Manager. When the user clicks ‘Extract Skills’, the algorithm outputs two types of skills:
-    the first are the raw skill spans as exactly worded from the job advert. The second are taxonomy skills based on how closely the raw skill spans map to them.
-
-    As the algorithm supports multiple taxonomies, a user can compare the nature and types of skills present in the different taxonomies. For example, when the algorithm is applied to a software engineer role, the lightcast taxonomy skills are more specific to programming languages than ESCO. This suggests that there could be more technical skills included in the lightcast taxonomy.
+    tax_text = """
+    The text entered above was taken from a job advert for a Software Engineer. When the user clicks ‘Extract Skills’, the algorithm outputs two lists of skills: the first list shows the ‘raw skills’ as they are expressed within the job advert. The second list consists of the skills from the ESCO taxonomy that the raw skills have been mapped onto. 
+    
+    As the algorithm supports multiple taxonomies, a user can compare the nature and types of skills extracted by different taxonomies. For example, the skills mapped to the Lightcast taxonomy for a software engineering role appear more specific to programming languages than those skills mapped to the ESCO taxonomy. This suggests that the Lightcast taxonomy may contain more technical skills.     
 
     """
     st.markdown(tax_text)
@@ -834,7 +861,7 @@ with st.expander("A use case for HR: _Understanding skills in a job advert_"):
     )
 
     conc_text = """
-    Ultimately, the tool could help HR professionals to check the skills that they are requesting within an advert and to standardise the language that they use. However, the skills extracted should not be used for any discriminatory hiring purposes.
+    Ultimately, this tool could help HR professionals to check the skills that they are requesting within an advert, and to standardise the language that they use. That said, the app should not be used for any discriminatory hiring purposes. 
 
     """
     st.markdown(conc_text)
@@ -846,9 +873,9 @@ st.header("", anchor="conclusions")
 # with st.expander("Conclusions"):
 
 conclusion_text = """
-Online job adverts, and the skills mentioned within, have the potential to help a number of groups, ranging from government bodies to HR professionals to make better labour market decisions. The example analysis is based on a static sample of job adverts but they have the potential to be turned into real-time tools for the most up-to-date view on the UK skills landscape.
+Online job adverts, and the skills mentioned within them, have the potential to help a number of groups, ranging from government bodies to HR professionals. Although the examples presented in this interactive blog are based on a static sample of 100,000 job adverts, they have the potential to be turned into real-time tools that provide an up-to-date view on the UK skills landscape to a range of users.  
 
-If you are interested in the example analysis, our [Skills Extractor library](https://nestauk.github.io/ojd_daps_skills/build/html/index.html) or the [Open Jobs Observatory](https://www.nesta.org.uk/data-visualisation-and-interactive/open-jobs-observatory/), do get in contact with us at dataanalytics@nesta.org.uk.
+If you would like to get in touch with the authors, with questions or suggestions, please contact us at dataanalytics@nesta.org.uk. 
 
 """
 st.markdown(conclusion_text)
