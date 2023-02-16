@@ -1,11 +1,9 @@
-@import url('https://github.com/nestauk/ojd-daps-skills-analysis/blob/dev/streamlit_viz/fonts/AvertaDemo-Regular.otf'); 
-
+@import url('https://fonts.cdnfonts.com/css/century-gothic');
 html,
 body,
 [class*="css"] {
   /* Add the name of your font and local font path here*/
-  font-family: "AvertaDemo-Regular";
-  src: url("./AvertaDemo-Regular.otf") format("opentype");
+  font-family: "Century Gothic";
   font-size: 18px;
   font-weight: 500;
   color: #000000;
