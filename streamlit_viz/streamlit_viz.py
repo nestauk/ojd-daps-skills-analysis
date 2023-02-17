@@ -201,7 +201,7 @@ def create_sector_skill_sim_network(
             fontSize=12,
             color="black",
             dx=10,
-            font="Averta Demo",
+            font="Century Gothic",
         )
         .encode(x="x", y="y", text="value")
     )
