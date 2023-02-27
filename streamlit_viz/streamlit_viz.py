@@ -269,7 +269,7 @@ def create_similar_sectors_text_chart(all_sector_data, sector):
                 legend=None,
             ),
         )
-        .properties(height=200, width=300)
+        .properties(height=200)
     )
 
     text_chart = (
@@ -281,7 +281,7 @@ def create_similar_sectors_text_chart(all_sector_data, sector):
             text="value",
             tooltip=[alt.Tooltip("sim_score", title="Similarity score", format=".2")],
         )
-        .properties(height=200, width=300)
+        .properties(height=200)
     )
 
     similar_sectors_colors = pd.DataFrame(
@@ -327,14 +327,14 @@ def create_similar_sectors_text_chart(all_sector_data, sector):
                 legend=alt.Legend(title=""),
             ),
         )
-        .properties(height=200, width=10)
+        .properties(height=200)
     )
 
-    base = alt.hconcat(circle_chart + text_chart, legend_chart)
+    base = circle_chart+text_chart
 
     configure_plots(base)
 
-    return base.configure_title(fontSize=24)
+    return base.configure_title(fontSize=24), legend_chart
 
 
 def create_common_skills_chart_by_skill_groups(top_skills_by_skill_groups, skill_group):
@@ -632,11 +632,18 @@ with st.expander("A use case for career advisers: _Enriching career advice_"):
 
     ## ----- Similar sectors [selections: sector] -----
 
-    similar_sectors_text_chart = create_similar_sectors_text_chart(
+    similar_sectors_text_chart, legend_chart = create_similar_sectors_text_chart(
         all_sector_data, sector
     )
 
-    st.altair_chart(similar_sectors_text_chart, use_container_width=True)
+    col1, col2 = st.columns([70, 30])
+    with col1:
+        st.altair_chart(similar_sectors_text_chart, use_container_width=True)
+    with col2:
+        st.text("")
+        st.text("")
+        st.altair_chart(legend_chart, use_container_width=True)
+
 
     ## ----- The most common skills [selections: sector] -----
 
