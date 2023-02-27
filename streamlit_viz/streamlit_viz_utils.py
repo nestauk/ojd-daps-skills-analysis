@@ -37,7 +37,7 @@ def load_data(file_name, local=True):
         else:
             print(f'{file_name} has wrong file extension! Only supports "*.csv" or "*.json"')
 
-def nestafont(font: str = "Averta Demo"):
+def nestafont(font:str = "Century Gothic"):
     """Define Nesta fonts"""
     return {
         "config": {
