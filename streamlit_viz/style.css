@@ -15,6 +15,7 @@ div[data-testid="stExpander"] div[role="button"] p {
   font-size: 48px !important;
   font-weight: bold;
   color: #0f294a;
+  vertical-align: middle;
 }
 .subtitle-font {
   font-size: 26px !important;

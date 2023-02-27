@@ -26,9 +26,18 @@ def load_model(app_mode):
     es.load()
     return es
 
-image_dir = os.path.join(app_folder, "images/nesta_escoe_skills.png")
+col1, col2 = st.columns([45, 55])
 
-st.image(image_dir)
+with col1:
+    st.image(os.path.join(app_folder, "images/nesta_escoe_logo.png"))
+
+with col2:
+    st.markdown(
+        "<p class='title-font'>Skills Extractor</p>",
+        unsafe_allow_html=True,
+    )
+
+
 
 # ----------------- streamlit config ------------------#
 

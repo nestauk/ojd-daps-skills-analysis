@@ -8,3 +8,9 @@ body,
   font-weight: 500;
   color: #000000;
 }
+.title-font {
+  font-size: 48px !important;
+  font-weight: bold;
+  color: #0f294a;
+  vertical-align: middle;
+}

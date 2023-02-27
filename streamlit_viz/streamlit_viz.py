@@ -517,12 +517,12 @@ with open(os.path.join(PROJECT_DIR, "streamlit_viz/style.css")) as css:
 # ----- Headings -----
 
 st.image(
-    os.path.join(images_folder, "hansjorg-keller-puMOiZaaxWI-unsplash_crop.jpg"),
+    os.path.join(images_folder, "annie-spratt-8_WZU5xKFKk-unsplash_crop.jpg"),
     width=200,
     use_column_width="always",
 )
 
-col1, col2 = st.columns([70, 30])
+col1, col2 = st.columns([59, 41])
 with col1:
     st.markdown(
         "<p class='title-font'>Skills in Job Adverts</p>",
@@ -530,7 +530,7 @@ with col1:
     )
 
 with col2:
-    st.image(os.path.join(images_folder, "nesta_escoe_transparent.png"), width=200)
+    st.image(os.path.join(images_folder, "nesta_escoe_transparent.png"))
 
 st.markdown(
     "<p class='subtitle-font'>India Kerle, Liz Gallagher and Cath Sleeman</p>",
@@ -893,6 +893,6 @@ st.markdown(
 )
 
 st.markdown(
-    "<p class='tiny-font'>Image credit: Reger Verkehr und Stau am Eingang zum Bienenhaus. Busy traffic and congestion at the entrance to the apiary.</p>",
+    "<p class='tiny-font'>Image credit: Annie Spratt. Deans Court beekeeper.</p>",
     unsafe_allow_html=True,
 )
