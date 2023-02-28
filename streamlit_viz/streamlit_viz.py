@@ -544,20 +544,21 @@ st.markdown("<p class='subtitle-font'>13th February 2023</p>", unsafe_allow_html
 st.header("", anchor="introduction")
 # with st.expander("Introduction", expanded=True):
 intro_text = """
-Many groups, including policy makers, local authorities and career advisers, don’t have access to up-to-date information on the latest skills required by employers. This is because there is no publicly available data on the skills mentioned within UK job advertisements. This data gap means that these groups have a less-than-complete evidence base on which to inform labour market policies, address regional skill shortages or advise job seekers. 
+Many groups, including policy makers, local authorities and career advisers do not have access to up-to-date information on the latest skills required by employers. This is because there is no publicly available data on the skills mentioned within UK job advertisements. This data gap means that these groups have a less-than-complete evidence base on which to inform labour market policies, address regional skill shortages or advise job seekers. 
 
-To address this, Nesta has released the [Open Jobs Observatory (OJO)](https://www.nesta.org.uk/data-visualisation-and-interactive/open-jobs-observatory/), a project to:
+To address this gap, Nesta has created the [Open Jobs Observatory (OJO)](https://www.nesta.org.uk/data-visualisation-and-interactive/open-jobs-observatory/), a project to:
 
-1. *Collect* millions of online job adverts (with the permission of online job boards); and
-2. *Develop* a suite of algorithms that extract insights from the text of the job advertisements. 
+1. *collect* millions of online job adverts (with the permission of online job boards); and
+2. *develop* a suite of algorithms that extract insights from the text of the job advertisements. 
 
-We have recently released an [open-source skills extraction python library](https://nestauk.github.io/ojd_daps_skills/build/html/about.html) which extracts the skills mentioned within job adverts. To learn more about this, you can read our previous blog (link pending).
+We have recently released [an open-source Python library](https://nestauk.github.io/ojd_daps_skills/build/html/index.html) which extracts the skills mentioned within job adverts. To learn more about this, you can read our previous blog introducing the library (link pending). This new work builds on work with the Economic Statistics Centre of Excellence (ESCoE) over a number of years. You can read more about these projects on the [ESCoE project page](https://www.escoe.ac.uk/projects/making-sense-of-skills/).
 
-Both our suite of algorithms and ever growing database of online job adverts allow us to drill down on occupational and regional skill demand. To illustrate the types of analysis made possible by addressing this data gap, we have created a number of example interactive visualisations. All the examples, shown below, are based on **a static sample of 100,000 job adverts that were posted online between January 2021 and August 2022**. The skills extracted were matched to the [European Commission’s European Skills, Competences, and Occupations (ESCO)](https://esco.ec.europa.eu/en/about-esco/what-esco) skills taxonomy.
+Both our suite of algorithms and ever-growing database of online job adverts allow users to drill down into both occupational and regional skill demands within the job adverts. To illustrate the types of analysis made possible by this, we have created a number of illustrative interactive visualisations. All the examples, shown below, are based on *a static sample of 100,000 job adverts that were posted online between January 2021 and August 2022*. The skills extracted were matched to the [European Commission’s European Skills, Competences, and Occupations (ESCO)](https://esco.ec.europa.eu/en/about-esco/what-esco) skills taxonomy. 
 
-It is important to note that, whilst job advertisements can provide interesting insights, they are not without limitation. For example, we know that not all vacant positions are advertised online, and moreover, not all skills required in a job may be mentioned within the advert. Therefore, our overall results will be affected by the tendency to advertise certain types of jobs online, across both regions and occupations.
+It is important to note that, whilst job advertisements can provide interesting insights, they are not without limitation. For example, we know that not all vacant positions are advertised online and, moreover, not all skills required in a job may be mentioned within the advert. Therefore, our overall results will be affected by the tendency to advertise certain types of jobs online, across both regions and occupations.
 
-This blog is intended as a demonstration only, to showcase what is possible with rich data and open algorithms. In the future, we hope to build a real-time tool that uses the entire database of job adverts to more completely describe the UK’s skill demands landscape.  
+This blog is intended as a demonstration only, to showcase what is possible with rich data and open algorithms. In the future, we hope to build a real-time tool that uses the entire database of job adverts to more completely describe the UK’s skill demands landscape.
+
 """
 
 st.markdown(intro_text)
