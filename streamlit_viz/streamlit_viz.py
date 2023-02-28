@@ -18,6 +18,8 @@ st.set_page_config(
     page_title="Skills Demand Analysis", page_icon=os.path.join(images_folder, "nesta_logo.png"),
 )
 
+chart_title_font_size = 14
+
 def load_summary_data():
 
     file_name = os.path.join(
@@ -210,7 +212,7 @@ def create_sector_skill_sim_network(
 
     configure_plots(legend_chart)
 
-    return nodes, edges, config, legend_chart.configure_title(fontSize=24)
+    return nodes, edges, config, legend_chart.configure_title(fontSize=chart_title_font_size)
 
 
 def create_similar_sectors_text_chart(all_sector_data, sector):
@@ -334,7 +336,7 @@ def create_similar_sectors_text_chart(all_sector_data, sector):
 
     configure_plots(base)
 
-    return base.configure_title(fontSize=24), legend_chart
+    return base.configure_title(fontSize=chart_title_font_size), legend_chart
 
 
 def create_common_skills_chart_by_skill_groups(top_skills_by_skill_groups, skill_group):
@@ -374,7 +376,7 @@ def create_common_skills_chart_by_skill_groups(top_skills_by_skill_groups, skill
 
     configure_plots(common_skills_chart)
 
-    return common_skills_chart.configure_title(fontSize=24)
+    return common_skills_chart.configure_title(fontSize=chart_title_font_size)
 
 
 def create_common_skills_chart(
@@ -435,7 +437,7 @@ def create_common_skills_chart(
 
     configure_plots(common_skills_chart)
 
-    return common_skills_chart.configure_title(fontSize=24)
+    return common_skills_chart.configure_title(fontSize=chart_title_font_size)
 
 
 def create_location_quotident_graph(all_location_data, location):
@@ -491,7 +493,7 @@ def create_location_quotident_graph(all_location_data, location):
     base_line = base + vline
     configure_plots(base_line)
 
-    return base_line.configure_title(fontSize=24)
+    return base_line.configure_title(fontSize=chart_title_font_size)
 
 
 # ========================================
@@ -745,9 +747,9 @@ with st.expander("A use case for local authorities: _understanding regional skil
 
     geo = st.selectbox("Select Region", regions_list)
 
-    st.markdown(
-        "<p class='medium-font'>Vacancies per Region</p>", unsafe_allow_html=True
-    )
+    # st.markdown(
+    #     "<p class='medium-font'>Vacancies per Region</p>", unsafe_allow_html=True
+    # )
 
     metric1, metric2 = st.columns((1, 1))
     metric1.metric(
@@ -760,7 +762,7 @@ with st.expander("A use case for local authorities: _understanding regional skil
 
     ## ----- The most common skills [selections: skill level] -----
 
-    st.markdown("<p class='medium-font'>Skills per region</p>", unsafe_allow_html=True)
+    # st.markdown("<p class='medium-font'>Skills per region</p>", unsafe_allow_html=True)
 
     local_gov_text_top_skills = """
     The visualisation below shows the most common skills (and skill groups) requested in job adverts for a chosen region. By taking advantage of the multi-level structure of ESCO, we can provide a sense of both the broad and narrow skill mixes within the chosen region.
