@@ -548,12 +548,12 @@ Many groups, including policy makers, local authorities and career advisers do n
 
 To address this gap, Nesta has created the [Open Jobs Observatory (OJO)](https://www.nesta.org.uk/data-visualisation-and-interactive/open-jobs-observatory/), a project to:
 
-1. *collect* millions of online job adverts (with the permission of online job boards); and
-2. *develop* a suite of algorithms that extract insights from the text of the job advertisements. 
+1. **collect** millions of online job adverts (with the permission of online job boards); and
+2. **develop** a suite of algorithms that extract insights from the text of the job advertisements. 
 
 We have recently released [an open-source Python library](https://nestauk.github.io/ojd_daps_skills/build/html/index.html) which extracts the skills mentioned within job adverts. To learn more about this, you can read our previous blog introducing the library (link pending). This new work builds on work with the Economic Statistics Centre of Excellence (ESCoE) over a number of years. You can read more about these projects on the [ESCoE project page](https://www.escoe.ac.uk/projects/making-sense-of-skills/).
 
-Both our suite of algorithms and ever-growing database of online job adverts allow users to drill down into both occupational and regional skill demands within the job adverts. To illustrate the types of analysis made possible by this, we have created a number of illustrative interactive visualisations. All the examples, shown below, are based on *a static sample of 100,000 job adverts that were posted online between January 2021 and August 2022*. The skills extracted were matched to the [European Commission’s European Skills, Competences, and Occupations (ESCO)](https://esco.ec.europa.eu/en/about-esco/what-esco) skills taxonomy. 
+Both our suite of algorithms and ever-growing database of online job adverts allow users to drill down into both occupational and regional skill demands within the job adverts. To illustrate the types of analysis made possible by this, we have created a number of illustrative interactive visualisations. All the examples, shown below, are based on **a static sample of 100,000 job adverts that were posted online between January 2021 and August 2022**. The skills extracted were matched to the [European Commission’s European Skills, Competences, and Occupations (ESCO)](https://esco.ec.europa.eu/en/about-esco/what-esco) skills taxonomy. 
 
 It is important to note that, whilst job advertisements can provide interesting insights, they are not without limitation. For example, we know that not all vacant positions are advertised online and, moreover, not all skills required in a job may be mentioned within the advert. Therefore, our overall results will be affected by the tendency to advertise certain types of jobs online, across both regions and occupations.
 
@@ -880,7 +880,7 @@ st.header("", anchor="conclusions")
 conclusion_text = """
 Online job adverts and the skills mentioned within them have the potential to help a number of groups, ranging from government bodies to HR professionals. Although the examples presented in this interactive blog are based on a static sample of 100,000 job adverts, they have the potential to be turned into real-time tools that provide an up-to-date view on the UK skills landscape to a range of users.
 
-If you would like to get in touch with the authors, with questions or suggestions, please contact us at *dataanalytics@nesta.org.uk*. 
+If you would like to get in touch with the authors, with questions or suggestions, please contact us at **dataanalytics@nesta.org.uk**. 
 
 This research has been funded by the Office for National Statistics as part of the research programme of the Economic Statistics Centre of Excellence (ESCoE). 
 
