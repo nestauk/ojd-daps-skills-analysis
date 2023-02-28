@@ -191,6 +191,7 @@ def create_sector_skill_sim_network(
                 ),
                 legend=None,
             ),
+            tooltip=alt.value(None)
         )
         .properties(height=200)
     )
@@ -205,7 +206,7 @@ def create_sector_skill_sim_network(
             dx=10,
             font="Century Gothic",
         )
-        .encode(x="x", y="y", text="value")
+        .encode(x="x", y="y", text="value", tooltip=alt.value(None))
     )
 
     legend_chart = legend_chart + legend_text
@@ -841,7 +842,7 @@ with st.expander("A use case for HR: _understanding the skills within a job adve
     with col2:
         st.image(os.path.join(images_folder, "scene_1.gif"))
         st.caption(
-            '<p style="text-align: center;">Demo app in action.</p>',
+            '<p style="text-align: center;"><em>Demo app in action.</em></p>',
             unsafe_allow_html=True,
         )
 
@@ -864,7 +865,7 @@ with st.expander("A use case for HR: _understanding the skills within a job adve
         st.image(os.path.join(images_folder, "lightcast_extracted_skills_engineer.png"))
 
     st.caption(
-        '<p style="text-align: center;">Extracted skills from a software developer role.</p>',
+        '<p style="text-align: center;"><em>Extracted skills from a software developer role.</em></p>',
         unsafe_allow_html=True,
     )
 
