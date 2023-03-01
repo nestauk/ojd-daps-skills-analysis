@@ -72,16 +72,9 @@ txt = st.text_area(
 )
 es = load_model(app_mode)
 
-@st.cache(allow_output_mutation=True)
-def SkillsExtracted():
-    return []
-
-skills_extracted_counter=SkillsExtracted()
-
 button = st.button("Extract Skills")
 
 if button:
-    skills_extracted_counter.append('dummy')
     txt = txt.replace("\n", ". ")
     with st.spinner("🤖 Running algorithms..."):
 
@@ -120,35 +113,3 @@ st.markdown(
 """,
 unsafe_allow_html=True,
 )
-
-# Page views
-
-@st.cache(allow_output_mutation=True)
-def Pageviews():
-    return []
-
-pageviews=Pageviews()
-pageviews.append('dummy')
-
-st.write("#")
-st.write("#")
-st.write("#")
-
-st.markdown(
-    """
-<style>
-.tiny-font {
-    font-size:14px !important;
-    color: #646363;
-    text-align: center;
-}
-</style>
-""",
-    unsafe_allow_html=True,
-)
-
-st.markdown(
-    "<p class='tiny-font'>Page viewed {} times. Skills extracted {} times.</p>".format(len(pageviews), len(skills_extracted_counter)),
-    unsafe_allow_html=True,
-)
-
