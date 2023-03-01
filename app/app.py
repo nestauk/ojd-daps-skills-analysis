@@ -37,8 +37,6 @@ with col2:
         unsafe_allow_html=True,
     )
 
-
-
 # ----------------- streamlit config ------------------#
 
 with open(os.path.join(app_folder, "style.css")) as css:
@@ -46,10 +44,10 @@ with open(os.path.join(app_folder, "style.css")) as css:
 
 st.markdown(
     """
-This app shows how Nesta's [Skills Extractor Library](https://github.com/nestauk/ojd_daps_skills) can extract skills from a job advert and then match those terms to skills from a standard list or ‘skills taxonomy’.
+This app shows how Nesta's [Skills Extractor Python Library](https://github.com/nestauk/ojd_daps_skills) can extract skills from a job advert and then match those terms to skills from a standard list or ‘skills taxonomy’. 
 At present, you can choose to match extracted skills to one of two skills taxonomies that have been developed by other groups:
 1. The [European Commission's ESCO taxonomy v1.1.1](https://esco.ec.europa.eu/en/classification/skill_main) which is a multilingual classification of European Skills, Competences, Qualifications and Occupations and;
-2. [Lightcast's Open Skills taxonomy](https://lightcast.io/open-skills) (as of 22/11/22) which is an open source library of 32,000+ skills.
+2. [Lightcast's Open Skills taxonomy](https://lightcast.io/open-skills) (as of 22/11/22) which is open source library of 32,000+ skills
 """
 )
 
@@ -60,12 +58,10 @@ st.warning(
 
 st.markdown(
     """
-If you would like to extract skills from many adverts, you can use our [open-source python library](https://github.com/nestauk/ojd_daps_skills) by simply `pip install ojd-daps-skills` and following the [instructions in our documentation](https://nestauk.github.io/ojd_daps_skills/build/html/about.html).
-If you would like to explore how the algorithm can provide new insights, check out this interactive blog (link pending) that analyses extracted skills from thousands of job adverts.
-The Skills Extractor library was made possible by funding from the [Economic Statistics Centre of Excellence](https://www.escoe.ac.uk/).
-If you have any feedback or questions about the library or app, do reach out to dataanalytics@nesta.org.uk.
+If you would like to explore how the algorithm can provide new insights on the UK skills landscape, check out this interactive blog (link pending) that analyses extracted skills from thousands of job adverts. 
 """
 )
+
 
 esco_tax = "ESCO"
 lightcast_tax = "Lightcast"
@@ -76,9 +72,16 @@ txt = st.text_area(
 )
 es = load_model(app_mode)
 
+@st.cache(allow_output_mutation=True)
+def SkillsExtracted():
+    return []
+
+skills_extracted_counter=SkillsExtracted()
+
 button = st.button("Extract Skills")
 
 if button:
+    skills_extracted_counter.append('dummy')
     txt = txt.replace("\n", ". ")
     with st.spinner("🤖 Running algorithms..."):
 
@@ -106,3 +109,46 @@ if button:
 
     else:
         st.warning("No skills were found in the job advert", icon="⚠️")
+
+st.write("#")
+st.markdown("""---""")
+st.markdown(
+    """
+<small><p>The Skills Extractor library was made possible by funding from the [Economic Statistics Centre of Excellence](https://www.escoe.ac.uk/).</p></small>
+
+<small><p>If you have any feedback or questions about the library or app, do reach out to **dataanalytics@nesta.org.uk**.</p></small>
+""",
+unsafe_allow_html=True,
+)
+
+# Page views
+
+@st.cache(allow_output_mutation=True)
+def Pageviews():
+    return []
+
+pageviews=Pageviews()
+pageviews.append('dummy')
+
+st.write("#")
+st.write("#")
+st.write("#")
+
+st.markdown(
+    """
+<style>
+.tiny-font {
+    font-size:14px !important;
+    color: #646363;
+    text-align: center;
+}
+</style>
+""",
+    unsafe_allow_html=True,
+)
+
+st.markdown(
+    "<p class='tiny-font'>Page viewed {} times. Skills extracted {} times.</p>".format(len(pageviews), len(skills_extracted_counter)),
+    unsafe_allow_html=True,
+)
+
