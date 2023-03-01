@@ -14,9 +14,8 @@ PROJECT_DIR = Path(__file__).resolve().parents[1]
 data_folder = os.path.join(PROJECT_DIR, "streamlit_viz/data")
 images_folder = os.path.join(PROJECT_DIR, "streamlit_viz/images")
 
-st.set_page_config(
-    page_title="Skills Demand Analysis", page_icon=os.path.join(images_folder, "nesta_logo.png"),
-)
+
+st.set_page_config(page_title="Skills Demand Analysis", page_icon=os.path.join(images_folder, "nesta_logo.png"))
 
 chart_title_font_size = 14
 
@@ -525,10 +524,11 @@ st.image(
     use_column_width="always",
 )
 
-col1, col2 = st.columns([59, 41])
+col1, col2 = st.columns([59, 35])
+
 with col1:
     st.markdown(
-        "<p class='title-font'>Skills in Job Adverts</p>",
+        '<span style="font-size:39px">Exploring UK Skill Demand</b></span>',
         unsafe_allow_html=True,
     )
 
