@@ -822,7 +822,7 @@ st.header("", anchor="hr")
 with st.expander("A use case for HR: _understanding the skills within a job advert_"):
 
     hr_text = """
-        We have also developed a beta app that [uses our algorithm to extract skills from a single job advert](http://13.42.37.54:8501/) supplied by a user. This could be useful for HR professionals to quickly identify the skills that they are requesting within an otherwise densely worded job advert. 
+        We have also developed a beta app that [uses our algorithm to extract skills from a single job advert](https://www.nesta.org.uk/data-visualisation-and-interactive/skills-extractor-tool/) supplied by a user. This could be useful for HR professionals to quickly identify the skills that they are requesting within an otherwise densely worded job advert. 
         
         The user simply pastes their advert into the empty box shown below. The algorithm then extracts the skill-related terms within the text and seeks to find their closest matches within an official list (or taxonomy) of skills. 
         
