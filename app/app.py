@@ -58,7 +58,7 @@ st.warning(
 
 st.markdown(
     """
-If you would like to explore how the algorithm can provide new insights on the UK skills landscape, check out this [interactive blog](https://nesta-skills.streamlit.app/) that analyses extracted skills from thousands of job adverts. 
+If you would like to explore how the algorithm can provide new insights on the UK skills landscape, check out this [interactive blog](https://www.nesta.org.uk/data-visualisation-and-interactive/exploring-uk-skills-demand/) that analyses extracted skills from thousands of job adverts. You can also read [our blog article introducing the library](https://www.escoe.ac.uk/the-skills-extractor-library). 
 """
 )
 
