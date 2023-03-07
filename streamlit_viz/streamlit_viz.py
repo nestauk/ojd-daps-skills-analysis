@@ -554,7 +554,7 @@ To address this gap, Nesta has created the [Open Jobs Observatory (OJO)](https:/
 1. **collect** millions of online job adverts (with the permission of online job boards); and
 2. **develop** a suite of algorithms that extract insights from the text of the job advertisements. 
 
-We have recently released [an open-source Python library](https://nestauk.github.io/ojd_daps_skills/build/html/index.html) which extracts the skills mentioned within job adverts. To learn more about this, you can read our previous blog introducing the library (link pending). This new work builds on work with the Economic Statistics Centre of Excellence (ESCoE) over a number of years. You can read more about these projects on the [ESCoE project page](https://www.escoe.ac.uk/projects/making-sense-of-skills/).
+We have recently released [an open-source Python library](https://nestauk.github.io/ojd_daps_skills/build/html/index.html) which extracts the skills mentioned within job adverts. To learn more about this, you can read [our previous blog introducing the library](https://www.escoe.ac.uk/the-skills-extractor-library). This new work builds on work with the Economic Statistics Centre of Excellence (ESCoE) over a number of years. You can read more about these projects on the [ESCoE project page](https://www.escoe.ac.uk/projects/making-sense-of-skills/).
 
 Both our suite of algorithms and ever-growing database of online job adverts allow users to drill down into both occupational and regional skill demands within the job adverts. To illustrate the types of analysis made possible by this, we have created a number of illustrative interactive visualisations. All the examples, shown below, are based on **a static sample of 100,000 job adverts that were posted online between January 2021 and August 2022**. The skills extracted were matched to the [European Commission’s European Skills, Competences, and Occupations (ESCO)](https://esco.ec.europa.eu/en/about-esco/what-esco) skills taxonomy. 
 
@@ -822,7 +822,7 @@ st.header("", anchor="hr")
 with st.expander("A use case for HR: _understanding the skills within a job advert_"):
 
     hr_text = """
-        We have also developed a beta app that [uses our algorithm to extract skills from a single job advert](http://13.42.37.54:8501/) supplied by a user. This could be useful for HR professionals to quickly identify the skills that they are requesting within an otherwise densely worded job advert. 
+        We have also developed a beta app that [uses our algorithm to extract skills from a single job advert](https://www.nesta.org.uk/data-visualisation-and-interactive/skills-extractor-tool/) supplied by a user. This could be useful for HR professionals to quickly identify the skills that they are requesting within an otherwise densely worded job advert. 
         
         The user simply pastes their advert into the empty box shown below. The algorithm then extracts the skill-related terms within the text and seeks to find their closest matches within an official list (or taxonomy) of skills. 
         
