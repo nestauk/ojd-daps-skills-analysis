@@ -528,7 +528,7 @@ col1, col2 = st.columns([59, 35])
 
 with col1:
     st.markdown(
-        '<span style="font-size:39px">Exploring UK Skill Demand</b></span>',
+        '<span style="font-size:38px">Exploring UK Skill Demands</b></span>',
         unsafe_allow_html=True,
     )
 
@@ -539,7 +539,7 @@ st.markdown(
     "<p class='subtitle-font'>India Kerle, Liz Gallagher and Cath Sleeman</p>",
     unsafe_allow_html=True,
 )
-st.markdown("<p class='subtitle-font'>13th February 2023</p>", unsafe_allow_html=True)
+st.markdown("<p class='subtitle-font'>March 2023</p>", unsafe_allow_html=True)
 
 
 # ----- Introduction -----
@@ -729,7 +729,7 @@ with st.expander("A use case for career advisers: _enriching career advice_"):
     loc_quotident_data,
 ) = load_regional_data()
 
-regions_list = list(all_region_data.keys())
+regions_list = list(loc_quotident_data.region.unique())
 
 # st.markdown(
 #     "<p class='big-font'>A use case for local authorities: <i>regional skill demand</i></p>",
@@ -802,7 +802,7 @@ with st.expander("A use case for local authorities: _understanding regional skil
     loc_text_intensity = """
     The visualisation above shows that the most requested skills in job adverts are similar across regions. To get a better sense of a region’s ‘skill specialities’, we compute a metric called ‘location quotient', which identifies skill groups that are requested more or less frequently in that region than across the rest of the country. The quotient is calculated by dividing the percentage of job vacancies that mention at least one skill from that skill group in that region, by the same percentage for the whole of the UK. Scores above one indicate that the region may have greater demand for that skill group, while scores below one suggest the opposite. Skills mentioned at least once in fewer than 100 job adverts were removed.
     
-    For example, London has a relative skill specialism in software and applications development and analysis and finance, banking and insurance, while Southern Scotland has a relative skill specialism in providing medical advice. 
+    For example, London has a relative skill specialism in software and applications development and analysis and finance, banking and insurance, while Shropshire and Staffordshire has a relative specialism in providing medical, dental and nursing care. 
     
     This information might be useful for local authorities who are seeking to understand the skills that are in greater demand within their region, to in turn inform decisions around local skills provision.
     """
