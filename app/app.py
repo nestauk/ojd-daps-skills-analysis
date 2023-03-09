@@ -103,7 +103,7 @@ if button:
     else:
         st.warning("No skills were found in the job advert", icon="⚠️")
 
-st.write("#")
+st.write("")
 st.markdown("""---""")
 st.markdown(
     """
