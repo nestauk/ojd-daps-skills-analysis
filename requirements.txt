@@ -9,5 +9,3 @@ altair-viewer==0.4.0
 pandas==1.3.5
 ojd-daps-skills @ git+https://github.com/nestauk/ojd_daps_skills.git@201_update_dependencies
 st-annotated-text==3.0.0
-en_core_web_sm @ https://github.com/explosion/spacy-models/releases/download/en_core_web_sm-3.4.1/en_core_web_sm-3.4.1.tar.gz
-typing_extensions<4.6.0
